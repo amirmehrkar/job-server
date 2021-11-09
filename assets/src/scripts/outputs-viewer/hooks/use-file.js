@@ -33,8 +33,10 @@ function useFile(file) {
       // don't try to return the data
       if (isCsv(file) && file.size > 5000000) return {};
 
-      // If the file is an image
-      // grab the blob and encode it as Base64
+      // If the file is an image,
+      // grab the blob and encode it as Base64.
+      // We need the auth token to grab the image,
+      // so cannot request it directly in the <img> tag.
       if (isImg(file))
         return axios
           .get(file.url, {
